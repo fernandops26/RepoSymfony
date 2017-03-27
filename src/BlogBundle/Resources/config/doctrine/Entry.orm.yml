@@ -1,0 +1,29 @@
+BlogBundle\Entity\Entry:
+    type: entity
+    table: null
+    repositoryClass: BlogBundle\Repository\EntryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        authorId:
+            type: integer
+            column: author_id
+        categoryId:
+            type: integer
+            column: category_id
+        title:
+            type: string
+            length: 255
+        content:
+            type: text
+        status:
+            type: string
+            length: 255
+        image:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
