@@ -9,12 +9,6 @@ BlogBundle\Entity\Entry:
             generator:
                 strategy: AUTO
     fields:
-        authorId:
-            type: integer
-            column: author_id
-        categoryId:
-            type: integer
-            column: category_id
         title:
             type: string
             length: 255
