@@ -22,6 +22,7 @@ class DefaultController extends Controller
             echo $author->getName()."</br>";
             echo $author->getSurname()."</br>";
             echo $author->getEmail()."</br>";
+            echo $author->getRole()."</br>";
         }
 
         die();
