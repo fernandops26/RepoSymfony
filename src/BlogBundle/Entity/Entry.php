@@ -81,7 +81,7 @@ class Entry
     }
 
     /**
-     * Get authorId
+     * Get author
      *
      * @return Author
      */
