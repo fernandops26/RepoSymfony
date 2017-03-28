@@ -26,4 +26,24 @@ BlogBundle\Entity\Entry:
         image:
             type: string
             length: 255
+    manyToOne:
+        author:
+            targetEntity: Author
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                author_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        category:
+            targetEntity: Category
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inverseBy: null
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
     lifecycleCallbacks: {  }
