@@ -1,6 +1,7 @@
 <?php
 
 namespace BlogBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Author
@@ -41,6 +42,15 @@ class Author
      * @var string
      */
     private $imagen;
+
+
+    protected $entries;
+
+
+    public function __construct()
+    {
+        $this->entries=new ArrayCollection();
+    }
 
 
     /**
@@ -195,6 +205,11 @@ class Author
     public function getImagen()
     {
         return $this->imagen;
+    }
+
+
+    public function getEntries(){
+        return $this->entries;
     }
 }
 

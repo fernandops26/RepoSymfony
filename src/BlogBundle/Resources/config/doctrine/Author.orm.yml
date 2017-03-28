@@ -27,4 +27,10 @@ BlogBundle\Entity\Author:
         imagen:
             type: string
             length: 255
+    oneToMany:
+        entries:
+            targetEntity: Entry
+            mappedBy: author
+            cascade: ["persist"]
+
     lifecycleCallbacks: {  }

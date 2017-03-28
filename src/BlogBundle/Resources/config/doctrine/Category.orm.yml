@@ -14,4 +14,9 @@ BlogBundle\Entity\Category:
             length: 255
         description:
             type: text
+    oneToMany:
+        entries:
+            targetEntity: Entry
+            mappedBy: category
+            cascade: ["persist"]
     lifecycleCallbacks: {  }

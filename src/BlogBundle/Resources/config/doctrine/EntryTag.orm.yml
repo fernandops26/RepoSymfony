@@ -1,0 +1,28 @@
+BlogBundle\Entity\EntryTag:
+    type: entity
+    table: null
+    repositoryClass: BlogBundle\Repository\EntryTagRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        entry:
+            targetEntity: Entry
+            cascade: {  }
+            mappedBy: null
+            inversedBy: entryTag
+            joinCOlumns:
+                entry_id:
+                    referencedColumnName: id
+        tag:
+            targetEntity: Tag
+            cascade: {  }
+            mappedBy: null
+            inversedBy: entryTag
+            joinCOlumns:
+                entry_id:
+                    referencedColumnName: id
+    lifecycleCallbacks: {  }

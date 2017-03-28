@@ -3,6 +3,8 @@
 namespace BlogBundle\Entity;
 use BlogBundle\Entity\Author;
 use BlogBundle\Entity\Category;
+use BlogBundle\Entity\Tag;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Entry
@@ -45,6 +47,15 @@ class Entry
     private $image;
 
 
+    protected $entryTag;
+
+
+    public function __construct()
+    {
+        $this->entryTag=new ArrayCollection();
+    }
+
+
     /**
      * Get id
      *
@@ -70,7 +81,7 @@ class Entry
     }
 
     /**
-     * Get authorId
+     * Get author
      *
      * @return Author
      */
@@ -197,6 +208,19 @@ class Entry
     public function getImage()
     {
         return $this->image;
+    }
+
+
+
+    public function addEntryTag(Tag $tag){
+        $this->entryTag[]=$tag;
+
+        return $this;
+    }
+
+
+    public function getEntryTag(){
+        return  $this->entryTag;
     }
 }
 

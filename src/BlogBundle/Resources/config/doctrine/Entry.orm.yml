@@ -9,12 +9,6 @@ BlogBundle\Entity\Entry:
             generator:
                 strategy: AUTO
     fields:
-        authorId:
-            type: integer
-            column: author_id
-        categoryId:
-            type: integer
-            column: category_id
         title:
             type: string
             length: 255
@@ -42,8 +36,13 @@ BlogBundle\Entity\Entry:
             cascade: {  }
             fetch: LAZY
             mappedBy: null
-            inverseBy: null
+            inverseBy: entry
             joinColumns:
                 category_id:
                     referencedColumnName: id
+    oneToMany:
+        entryTag:
+            targetEntity: EntryTag
+            mappedBy: entry
+            cascade: ["persist"]
     lifecycleCallbacks: {  }
