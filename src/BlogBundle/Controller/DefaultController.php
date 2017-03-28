@@ -23,6 +23,14 @@ class DefaultController extends Controller
             echo $author->getSurname()."</br>";
             echo $author->getEmail()."</br>";
             echo $author->getRole()."</br>";
+
+            $entries=$author->getEntries();
+
+            echo "<hr>";
+
+            foreach ($entries as $entry) {
+                echo $entry->getTitle()."</br>";
+            }
         }
 
         die();
