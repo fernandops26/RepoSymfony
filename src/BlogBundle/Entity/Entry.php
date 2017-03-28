@@ -1,6 +1,8 @@
 <?php
 
 namespace BlogBundle\Entity;
+use BlogBundle\Entity\Author;
+use BlogBundle\Entity\Category;
 
 /**
  * Entry
@@ -13,14 +15,14 @@ class Entry
     private $id;
 
     /**
-     * @var int
+     * @var Author
      */
-    private $authorId;
+    private $author;
 
     /**
-     * @var int
+     * @var Category
      */
-    private $categoryId;
+    private $category;
 
     /**
      * @var string
@@ -54,15 +56,15 @@ class Entry
     }
 
     /**
-     * Set authorId
+     * Set author
      *
-     * @param integer $authorId
+     * @param Author $author
      *
      * @return Entry
      */
-    public function setAuthorId($authorId)
+    public function setAuthor(Author $author = null)
     {
-        $this->authorId = $authorId;
+        $this->author = $author;
 
         return $this;
     }
@@ -70,35 +72,35 @@ class Entry
     /**
      * Get authorId
      *
-     * @return int
+     * @return Author
      */
-    public function getAuthorId()
+    public function getAuthor()
     {
-        return $this->authorId;
+        return $this->author;
     }
 
     /**
-     * Set categoryId
+     * Set category
      *
-     * @param integer $categoryId
+     * @param Category $category
      *
      * @return Entry
      */
-    public function setCategoryId($categoryId)
+    public function setCategory(Category $category = null)
     {
-        $this->categoryId = $categoryId;
+        $this->category = $category;
 
         return $this;
     }
 
     /**
-     * Get categoryId
+     * Get category
      *
-     * @return int
+     * @return Category
      */
-    public function getCategoryId()
+    public function getCategory()
     {
-        return $this->categoryId;
+        return $this->category;
     }
 
     /**
