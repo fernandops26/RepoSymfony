@@ -12,7 +12,7 @@ class DefaultController extends Controller
         return $this->render('BlogBundle:Default:index.html.twig');
     }
 
-    public function allAuthors(){
+    public function allAuthorsAction(){
         $author_repo=$this->getDoctrine()->getRepository(Author::class);
         $authors=$author_repo->findAll();
 
