@@ -3,7 +3,10 @@
     <head>
         <meta/>
         <title>{% block title %} Blog Symfony {% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+
+        <link rel="stylesheet" href="{{ asset('bundles/blog/css/semantic.min.css') }}" />
+        {% block stylesheets %}
+        {% endblock %}
     </head>
     <body>
     <header></header>
