@@ -30,6 +30,11 @@ class DefaultController extends Controller
 
             foreach ($entries as $entry) {
                 echo $entry->getTitle()."</br>";
+                $entryTag = $entry->getEntryTag();
+
+                foreach ($entryTag as $tag){
+                    echo $tag->getTag()->getName()." ";
+                }
             }
         }
 

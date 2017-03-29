@@ -23,6 +23,9 @@ class Tag
     private $description;
 
 
+    protected $entryTag;
+
+
     /**
      * Get id
      *
@@ -79,6 +82,10 @@ class Tag
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function getEntyTag(){
+        return $this->entryTag;
     }
 }
 
