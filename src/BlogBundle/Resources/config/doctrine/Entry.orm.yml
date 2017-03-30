@@ -26,7 +26,7 @@ BlogBundle\Entity\Entry:
             cascade: {  }
             fetch: LAZY
             mappedBy: null
-            inversedBy: entry
+            inversedBy: entries
             joinColumns:
                 author_id:
                     referencedColumnName: id
