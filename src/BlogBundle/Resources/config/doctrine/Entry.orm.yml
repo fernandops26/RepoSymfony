@@ -25,7 +25,7 @@ BlogBundle\Entity\Entry:
             targetEntity: Author
             cascade: {  }
             fetch: LAZY
-            mappedBy: null
+            mappedBy: entry
             inversedBy: entries
             joinColumns:
                 author_id:
@@ -35,13 +35,12 @@ BlogBundle\Entity\Entry:
             targetEntity: Category
             cascade: {  }
             fetch: LAZY
-            mappedBy: null
-            inverseBy: entry
+            inversedBy: entries
             joinColumns:
                 category_id:
                     referencedColumnName: id
     oneToMany:
-        entryTag:
+        entryTags:
             targetEntity: EntryTag
             mappedBy: entry
             cascade: ["persist"]

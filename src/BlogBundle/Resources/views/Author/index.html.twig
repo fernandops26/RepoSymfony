@@ -17,7 +17,7 @@
                 <div class="content">
                     {% for entry in author.entries %}
                         <p>{{ entry.title }}</p>
-                        {% for tag in entry.entryTag %}
+                        {% for tag in entry.entryTags %}
                             <div class="ui label">
                                 {{ tag.tag.name }}
                             </div>

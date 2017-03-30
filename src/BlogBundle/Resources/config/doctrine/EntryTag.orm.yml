@@ -1,6 +1,6 @@
 BlogBundle\Entity\EntryTag:
     type: entity
-    table: null
+    table: entry_tag
     repositoryClass: BlogBundle\Repository\EntryTagRepository
     id:
         id:
@@ -12,17 +12,15 @@ BlogBundle\Entity\EntryTag:
         entry:
             targetEntity: Entry
             cascade: {  }
-            mappedBy: null
-            inversedBy: entryTag
-            joinCOlumns:
+            inversedBy: entryTags
+            joinColumn:
                 entry_id:
                     referencedColumnName: id
         tag:
             targetEntity: Tag
             cascade: {  }
-            mappedBy: null
-            inversedBy: entryTag
-            joinCOlumns:
-                entry_id:
+            inversedBy: entryTags
+            joinColumn:
+                tag_id:
                     referencedColumnName: id
     lifecycleCallbacks: {  }

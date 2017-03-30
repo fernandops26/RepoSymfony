@@ -47,12 +47,12 @@ class Entry
     private $image;
 
 
-    protected $entryTag;
+    protected $entryTags;
 
 
     public function __construct()
     {
-        $this->entryTag=new ArrayCollection();
+        $this->entryTags=new ArrayCollection();
     }
 
 
@@ -213,14 +213,14 @@ class Entry
 
 
     public function addEntryTag(Tag $tag){
-        $this->entryTag[]=$tag;
+        $this->entryTags[]=$tag;
 
         return $this;
     }
 
 
-    public function getEntryTag(){
-        return  $this->entryTag;
+    public function getEntryTags(){
+        return  $this->entryTags;
     }
 }
 

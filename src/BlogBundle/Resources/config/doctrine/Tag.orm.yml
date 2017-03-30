@@ -15,8 +15,8 @@ BlogBundle\Entity\Tag:
         description:
             type: text
     oneToMany:
-            entryTag:
-                targetEntity: EntryTag
-                mappedBy: Tag
-                cascade: ["persist"]
+          entryTags:
+              targetEntity: EntryTag
+              mappedBy: tag
+              cascade: ["persist"]
     lifecycleCallbacks: {  }
