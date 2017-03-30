@@ -1,4 +1,8 @@
-blog_homepage:
-    path:     /authors
+blog_authors:
+    path: /authors
     defaults: { _controller: BlogBundle:Author:getAuthors }
+    methods: GET
+blog_authors_create:
+    path: /authors/create
+    defaults: {_controller: BlogBundle:Author:createAuthorAction}
     methods: GET

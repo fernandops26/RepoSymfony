@@ -15,4 +15,8 @@ class AuthorController extends Controller
            "authors"=>$authors
         ]);
     }
+    
+    public function createAuthorAction(){
+        return $this->render('BlogBundle:Author:new.html.twig');
+    }
 }
