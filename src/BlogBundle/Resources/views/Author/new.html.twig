@@ -3,8 +3,34 @@
 
 {% block content %}
     <div class="ui container">
-        <h1 class="ui header center">New Author</h1>
-        {{ form_start(form,{'action':'','method':'POST'}) }}
+        {{ form_start(form,{'action':'','method':'POST','attr': {'class': 'ui form'}}) }}
+        <h1 class="ui dividing header center">New Author</h1>
+        <div class="two fields">
+            <div class="field">
+                <label> Name</label>
+                {{ form_widget(form.name) }}
+            </div>
+            <div class="field">
+                <label> Surname</label>
+                {{ form_widget(form.surname) }}
+            </div>
+        </div>
+        <div class="field">
+            <label>Role</label>
+            {{ form_widget(form.role) }}
+        </div>
+        <div class="field">
+            <label>Email</label>
+            {{ form_widget(form.email) }}
+        </div><div class="field">
+            <label>Password</label>
+            {{ form_widget(form.password) }}
+        </div><div class="field">
+            <label>Imagen</label>
+            {{ form_widget(form.imagen) }}
+        </div>
+
+
         {{ form_end(form) }}
     </div>
 {% endblock %}
