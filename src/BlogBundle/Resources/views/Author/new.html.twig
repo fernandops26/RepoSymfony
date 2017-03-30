@@ -1,5 +1,10 @@
-{% extends 'BlogBunle::layout' %}
+{% extends 'BlogBundle::layout.html.twig' %}
+
 
 {% block content %}
-    hola
+    <div class="ui container">
+        <h1 class="ui header center">New Author</h1>
+        {{ form_start(form,{'action':'','method':'POST'}) }}
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

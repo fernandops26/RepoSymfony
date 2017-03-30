@@ -3,6 +3,7 @@
 namespace BlogBundle\Controller;
 
 use BlogBundle\Entity\Author;
+use BlogBundle\Form\AuthorType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -16,7 +17,11 @@ class AuthorController extends Controller
         ]);
     }
     
-    public function createAuthorAction(){
-        return $this->render('BlogBundle:Author:new.html.twig');
+    public function newAuthorAction(){
+        $author=new Author();
+        $form=$this->createForm(AuthorType::class,$author);
+        return $this->render('BlogBundle:Author:new.html.twig',[
+            "form"=>$form->createView()
+        ]);
     }
 }

@@ -2,7 +2,7 @@ blog_authors:
     path: /authors
     defaults: { _controller: BlogBundle:Author:getAuthors }
     methods: GET
-blog_authors_create:
-    path: /authors/create
-    defaults: {_controller: BlogBundle:Author:createAuthorAction}
+blog_authors_new:
+    path: /authors/new
+    defaults: {_controller: BlogBundle:Author:newAuthor}
     methods: GET
