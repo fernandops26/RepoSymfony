@@ -4,10 +4,28 @@
 {% endblock %}
 
 {% block content %}
-
-    <h1>Lista de autores</h1>
-    {% for author in authors %}
-        <li>{{ author.name }}</li>
-    {% endfor %}
+    <div class="ui header centered">
+        <h1 >Lista de autores</h1>
+    </div>
+    <div class="ui container">
+        <div class="ui styled fluid accordion">
+            {% for author in authors %}
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    {{ author.name }} {{ author.surname }}
+                </div>
+                <div class="content">
+                    {% for entry in author.entries %}
+                        <p>{{ entry.title }}</p>
+                        {% for tag in entry.entryTag %}
+                            <div class="ui label">
+                                {{ tag.tag.name }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}
