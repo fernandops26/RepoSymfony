@@ -36,12 +36,22 @@
                 </div>
             </div>
             <div class="ui dropdown item">
-                User
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <a href="{{ path("blog_author_registrer") }}" class="item">Entrar</a>
-                    <a href="#" class="item">Ayuda</a>
-                </div>
+                {% if app.user!=null %}
+                    {{ app.user.name }} {{ app.user.surname }}
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="{{ path("blog_author_logout") }}" class="item" methods="DESTROY">Salir</a>
+                        <a href="#" class="item">Ayuda</a>
+                    </div>
+                {% else %}
+                    None
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="{{ path("blog_author_registrer") }}" class="item">Entrar</a>
+                        <a href="#" class="item">Ayuda</a>
+                    </div>
+                {% endif %}
+
             </div>
         </div>
 
@@ -56,11 +66,8 @@
         Blog Symfony- Application of example
     </footer>
     </body>
-    <script
-            src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script src="{{ asset('bundles/blog/js/jquery.js') }}"></script>
+    <script src={{ asset('bundles/blog/js/semantic.min.js') }}></script>
     <script src="{{ asset('bundles/blog/js/client.js') }}"></script>
     {% block javascripts %}{% endblock %}
 </html>
