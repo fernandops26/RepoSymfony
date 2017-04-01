@@ -9,7 +9,7 @@ security:
     providers:
         our_db_provider:
           entity:
-              class: BlogBunde:Author
+              class: BlogBundle:Author
               property: email
 
     firewalls:
