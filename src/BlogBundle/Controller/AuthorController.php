@@ -30,4 +30,15 @@ class AuthorController extends Controller
     public function registerAction(){
         return $this->render('BlogBundle:Author:register.html.twig');
     }
+
+    public function loginAction(Request $request){
+        $authenticationUtils=$this->get("security.authentication_utils");
+        $error=$authenticationUtils->getLastAuthenticationError();
+        $lastUsername=$authenticationUtils->getLastUsername();
+        
+        return $this->render("BlogBundle:Author:login.html.twig",[
+            "error"=>$error,
+            "lastUsername"=>$lastUsername
+        ]);
+    }
 }
