@@ -6,6 +6,7 @@ use BlogBundle\Entity\Author;
 use BlogBundle\Form\AuthorType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class AuthorController extends Controller
 {
