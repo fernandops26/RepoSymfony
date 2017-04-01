@@ -5,14 +5,36 @@
         <title>{% block title %} Blog Symfony {% endblock %}</title>
 
         <link rel="stylesheet" href="{{ asset('bundles/blog/css/semantic.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/client.css') }}" />
         {% block stylesheets %}
         {% endblock %}
     </head>
     <body>
-    <header></header>
-    <section id="content">
+    <header class="ui top fixed stackable menu">
+        <div class="item">
+            <img src="#" alt="">
+        </div>
+        <a href="/authors" class="item">Authors</a>
+        <a href="#" class="item">Posts</a>
+        <a href="#" class="item">Comments</a>
+
+        <div class="ui dropdown item">
+            ad
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                <a href="/authors" class="item">Authors</a>
+                <a href="#" class="item">Posts</a>
+                <a href="#" class="item">Comments</a>
+            </div>
+        </div>
+
+    </header>
+
+    <section id="content" style="margin-top: 4em;">
         {% block content %}{% endblock %}
     </section>
+
+
     <footer>
         Blog Symfony- Application of example
     </footer>

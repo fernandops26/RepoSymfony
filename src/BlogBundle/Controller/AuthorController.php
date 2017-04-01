@@ -20,6 +20,8 @@ class AuthorController extends Controller
     public function newAuthorAction(){
         $author=new Author();
         $form=$this->createForm(AuthorType::class,$author);
+
+        
         return $this->render('BlogBundle:Author:new.html.twig',[
             "form"=>$form->createView()
         ]);
