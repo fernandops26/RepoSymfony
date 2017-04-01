@@ -26,4 +26,8 @@ class AuthorController extends Controller
             "form"=>$form->createView()
         ]);
     }
+
+    public function registerAction(){
+        return $this->render('BlogBundle:Author:register.html.twig');
+    }
 }

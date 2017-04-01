@@ -6,3 +6,7 @@ blog_authors_new:
     path: /authors/new
     defaults: {_controller: BlogBundle:Author:newAuthor}
     methods: GET
+blog_author_registrer:
+    path: /registrer
+    defaults: {_controller: BlogBundle:Author:register}
+    methods: GET
