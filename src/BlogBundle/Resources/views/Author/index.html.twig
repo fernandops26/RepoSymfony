@@ -8,23 +8,27 @@
         <h1 >Lista de autores</h1>
     </div>
     <div class="ui container">
-        <div class="ui styled fluid accordion">
-            {% for author in authors %}
-                <div class="title">
-                    <i class="dropdown icon"></i>
-                    {{ author.name }} {{ author.surname }}
-                </div>
-                <div class="content">
-                    {% for entry in author.entries %}
-                        <p>{{ entry.title }}</p>
-                        {% for tag in entry.entryTags %}
-                            <div class="ui label">
-                                {{ tag.tag.name }}
-                            </div>
-                        {% endfor %}
+        <div class="ui grid centered">
+            <div class="nine wide column">
+                <div class="ui styled fluid accordion">
+                    {% for author in authors %}
+                        <div class="title">
+                            <i class="dropdown icon"></i>
+                            {{ author.name }} {{ author.surname }}
+                        </div>
+                        <div class="content">
+                            {% for entry in author.entries %}
+                                <p class="ui tiny header">{{ entry.title }}</p>
+                                {% for tag in entry.entryTags %}
+                                    <div class="ui label">
+                                        {{ tag.tag.name }}
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
                     {% endfor %}
                 </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
 

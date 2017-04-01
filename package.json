@@ -1,0 +1,15 @@
+{
+  "name": "RepoSymfony",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/fernandops26/RepoSymfony.git",
+  "author": "Fernando <fernandopalacios_s_26@hotmail.es>",
+  "license": "MIT",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "global": "^4.3.1",
+    "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^3.1.0"
+  }
+}
