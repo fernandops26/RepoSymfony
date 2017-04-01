@@ -2,10 +2,24 @@ blog_authors:
     path: /authors
     defaults: { _controller: BlogBundle:Author:getAuthors }
     methods: GET
+
 blog_authors_new:
     path: /authors/new
     defaults: {_controller: BlogBundle:Author:newAuthor}
     methods: GET
+
+blog_author_login:
+    path: /login
+    methods: GET
+
+blog_author_login_check:
+    path: /login_check
+    methods: POST
+
+blog_author_logout:
+    path: /logout
+    methods: DELETE
+
 blog_author_registrer:
     path: /registrer
     defaults: {_controller: BlogBundle:Author:register}
