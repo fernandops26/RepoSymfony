@@ -36,10 +36,37 @@ class AuthorController extends Controller
         $authenticationUtils=$this->get("security.authentication_utils");
         $error=$authenticationUtils->getLastAuthenticationError();
         $lastUsername=$authenticationUtils->getLastUsername();
+        $status="";
+
+        $author=new Author();
+        $form=$this->createForm(AuthorType::class,$author);
+        $form->handleRequest($request);
+
+        if($form->isValid()){
+            $author->setName($form->get("name")->getData());
+            $author->setSurname($form->get("surname")->getData());
+            $author->setEmail($form->get("email")->getData());
+            $author->setPassword($form->get("password")->getData());
+            $author->setRole("ROLE_AUTHOR");
+            $author->setImagen(null);
+
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($author);
+            $em->flush();
+            $status="Se registro correctamente";
+
+        }else{
+            $status="Error al registrar";
+        }
+
+
+
+
         
         return $this->render("BlogBundle:Author:login.html.twig",[
             "error"=>$error,
-            "lastUsername"=>$lastUsername
+            "lastUsername"=>$lastUsername,
+            "form"=>$form->createView()
         ]);
     }
 }
