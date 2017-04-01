@@ -11,9 +11,9 @@
     </head>
     <body>
     <header class="ui top stackable menu">
-        <div class="item">
-            <img src="#" alt="">
-        </div>
+        <a href="{{ path('blog_homepage') }}"class="item">
+            <h1 class="ui header">Blog PS</h1>
+        </a>
         <a href="/authors" class="item">Authors</a>
         <a href="#" class="item">Posts</a>
         <a href="#" class="item">Comments</a>
@@ -40,15 +40,15 @@
                     {{ app.user.name }} {{ app.user.surname }}
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a href="{{ path("blog_author_logout") }}" class="item" methods="DESTROY">Salir</a>
+                        <a href="{{ path("blog_author_logout") }}" class="item" >Logout</a>
                         <a href="#" class="item">Ayuda</a>
                     </div>
                 {% else %}
                     None
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a href="{{ path("blog_author_registrer") }}" class="item">Entrar</a>
-                        <a href="#" class="item">Ayuda</a>
+                        <a href="{{ path("blog_author_login") }}" class="item">Sign-in</a>
+                        <a href="{{ path("blog_author_registrer") }}" class="item">Sign-Up</a>
                     </div>
                 {% endif %}
 

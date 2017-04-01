@@ -19,9 +19,13 @@ blog_author_login_check:
 
 blog_author_logout:
     path: /logout
-    methods: DELETE
 
 blog_author_registrer:
     path: /registrer
     defaults: {_controller: BlogBundle:Author:register}
     methods: GET
+
+blog_homepage:
+    path: /home
+    methods: GET
+    defaults: {_controller: BlogBundle:Default:home}

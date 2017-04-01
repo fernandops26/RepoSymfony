@@ -41,4 +41,8 @@ class DefaultController extends Controller
         die();
 
     }
+    
+    public function homeAction(){
+        return $this->render('BlogBundle:Default:homepage.html.twig');
+    }
 }
