@@ -1,0 +1,66 @@
+{% extends "BlogBundle::layout.html.twig" %}
+
+
+
+{% block content %}
+    <div class="ui grid centered container ">
+        <div class="six wide column">
+            {{ form_start(form,{"method":"POST","attr":{"class":"ui form"}}) }}
+            <h1 class="ui header">New Entry</h1>
+            <div class="field">
+                <label for="">Title</label>
+                {{ form_widget(form.title) }}
+            </div>
+            {% if form_errors(form.title) !=null %}
+                <div class="ui negative message">
+                    <i class="close icon"></i>
+                    <p >
+                        {{ form_errors(form.title) }}
+                    </p>
+
+                </div>
+            {% endif %}
+            <div class="field">
+                <label for="">Content</label>
+                {{ form_widget(form.content) }}
+            </div>
+            {% if form_errors(form.content) !=null %}
+                <div class="ui negative message">
+                    <i class="close icon"></i>
+                    <p >
+                        {{ form_errors(form.content) }}
+                    </p>
+
+                </div>
+            {% endif %}
+            <div class="field">
+                <label>Status</label>
+                    {{ form_widget(form.status) }}
+            </div>
+            <div class="field">
+                <label for="BlogBlunde_entry[image]" class="ui icon button">
+                    <i class="file icon"></i>
+                    Open File
+                    {{ form_widget(form.image) }}
+                </label>
+            </div>
+
+            <div class="field">
+                {{ form_widget(form.category) }}
+            </div>
+            <div class="field">
+                <div class="ui right labeled left icon input">
+                    <i class="tags icon"></i>
+                    {{ form_widget(form.tags) }}
+                    <a class="ui tag label">
+                        Add Tag
+                    </a>
+                </div>
+            </div>
+            <div class="field">
+                {{ form_widget(form.Save) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

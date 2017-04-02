@@ -1,55 +1,66 @@
 blog_authors:
-    path: /authors
+    path:     /authors
     defaults: { _controller: BlogBundle:Author:getAuthors }
     methods: GET
 
 blog_authors_new:
-    path: /authors/new
+    path:     /authors/new
     defaults: {_controller: BlogBundle:Author:newAuthor}
     methods: GET
 
 blog_author_login:
-    path: /login
+    path:     /login
     defaults: {_controller: BlogBundle:Author:login}
     methods: [GET,POST]
 
 blog_author_login_check:
-    path: /login_check
-    methods: POST
+    path:     /login_check
+    methods:  POST
 
 blog_author_logout:
-    path: /logout
+    path:     /logout
 
 blog_author_registrer:
-    path: /registrer
+    path:     /registrer
     defaults: {_controller: BlogBundle:Author:register}
-    methods: GET
+    methods:  GET
 
 blog_homepage:
-    path: /home
-    methods: GET
+    path:     /home
+    methods:  GET
     defaults: {_controller: BlogBundle:Default:home}
 blog_add_tag:
-    path: /addTag
+    path:     /addTag
     defaults: { _controller: BlogBundle:Tag:add }
-    methods: [GET,POST]
+    methods:  [GET,POST]
 blog_index_tag:
-    path: /tags
+    path:     /tags
     defaults: {_controller: BlogBundle:Tag:index}
-    methods: GET
+    methods:  GET
 blog_delete_tag:
-    path: /tags/delete/{id}
+    path:     /tags/delete/{id}
     defaults: {_controller: BlogBundle:Tag:delete}
 blog_add_category:
-    path: /addCategory
+    path:     /addCategory
     defaults: { _controller: BlogBundle:Category:add }
 blog_index_category:
-    path: /categories
+    path:     /categories
     defaults: {_controller: BlogBundle:Category:index}
-    methods: GET
+    methods:  GET
 blog_delete_category:
-    path: /category/delete/{id}
+    path:     /category/delete/{id}
     defaults: {_controller: BlogBundle:Category:delete}
 blog_edit_category:
-    path: /category/edit/{id}
+    path:     /category/edit/{id}
     defaults: {_controller: BlogBundle:Category:edit}
+blog_add_entry:
+    path:     /addEntry
+    defaults: { _controller: BlogBundle:Entry:add }
+
+blog_edit_entry:
+    path:     /EditAction
+    defaults: { _controller: BlogBundle:Entry:Edit }
+
+blog_index_entry:
+    path:     /entries
+    defaults: { _controller: BlogBundle:Entry:index }

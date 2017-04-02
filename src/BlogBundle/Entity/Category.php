@@ -32,6 +32,8 @@ class Category
     }
 
 
+
+
     /**
      * Get id
      *
@@ -93,6 +95,11 @@ class Category
 
     public function getEntries(){
         return $this->entries;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
 
