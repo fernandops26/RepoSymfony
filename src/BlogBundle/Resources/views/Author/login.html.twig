@@ -25,13 +25,14 @@
             </form>
         </div>
         <div class="six wide column ">
-            {% if app.session.flashbag().get("status") %}
+            {% set messages=app.session.flashbag().get("status")  %}
+            {% if messages %}
                 <div class="ui negative message">
                     <i class="close icon"></i>
                     <div class="header">
                         Error
                     </div>
-                    {% for message in app.session.flashbag().get("status") %}
+                    {% for message in messages %}
                         <p>{{ message }}</p>
                     {% endfor %}
                 </div>
