@@ -54,7 +54,12 @@ class AuthorController extends Controller
             $author->setName($form->get("name")->getData());
             $author->setSurname($form->get("surname")->getData());
             $author->setEmail($form->get("email")->getData());
-            $author->setPassword($form->get("password")->getData());
+            //ENCRYPT PASS WITH BCRYPT
+            $factory=$this->get("security.encoder_factory");
+            $encoder=$factory->getEncoder($author);
+            $password=$encoder->encodePassword($form->get("password")->getData(),$author->getSalt());
+            //END ENCRYPT
+            $author->setPassword($password);
             $author->setRole("ROLE_AUTHOR");
             $author->setImagen("none.jpg");
 
