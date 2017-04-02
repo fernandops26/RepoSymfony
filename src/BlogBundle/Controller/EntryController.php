@@ -32,8 +32,14 @@ class EntryController extends Controller
                 $entry->setTitle($form->get("title")->getData());
                 $entry->setContent($form->get("content")->getData());
                 $entry->setAuthor($this->getUser());
-                $entry->setImage("null");
+                //UPLOAD IMAGE
+                $file=$form["image"]->getData();
+                $ext=$file->guessExtension();
+                $filename=time().'.'.$ext;
+                $file->move("uploads",$filename);
+                //END UPLOAD
 
+                $entry->setImage($filename);
                 $category=$rcategory->find($form->get("category")->getData());
                 $entry->setCategory($category);
 

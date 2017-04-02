@@ -5,7 +5,7 @@
 {% block content %}
     <div class="ui grid centered container ">
         <div class="six wide column">
-            {{ form_start(form,{"method":"POST","attr":{"class":"ui form"}}) }}
+            {{ form_start(form,{"method":"POST","enctype":"multipart/form-data","attr":{"class":"ui form"}}) }}
             <h1 class="ui header">New Entry</h1>
             <div class="field">
                 <label for="">Title</label>
