@@ -1,0 +1,43 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="ui  main container">
+        <div class="ui container">
+            <a href="{{ path("blog_add_category") }}" class="ui button primary">New Category</a>
+            {% for message in app.session.flashBag().get("status") %}
+                <div class="ui visible message">
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <table class="ui single line table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.description}}</td>
+                    <td>
+                        {% if category.entries.count() >0 %}
+                            Category it's used
+                        {% else %}
+                            <a href="{{ path("blog_delete_category",{"id": category.id}) }}" class="ui button negative">Delete</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path("blog_edit_category",{"id":category.id}) }}" class="ui button secondary">Edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
