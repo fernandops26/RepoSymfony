@@ -1,0 +1,42 @@
+{% extends "BlogBundle::layout.html.twig" %}
+
+
+
+{% block content %}
+    <div class="ui grid centered container ">
+
+        <div class="six wide column">
+            {{ form_start(form,{"method":"POST","attr":{"class":"ui form"}}) }}
+            <div class="field">
+                <label for="">Name</label>
+                {{ form_widget(form.name) }}
+            </div>
+            {% if form_errors(form.name) !=null %}
+                <div class="ui negative message">
+                    <i class="close icon"></i>
+                    <p >
+                        {{ form_errors(form.name) }}
+                    </p>
+
+                </div>
+            {% endif %}
+            <div class="field">
+                <label for="">Description</label>
+                {{ form_widget(form.description) }}
+            </div>
+            {% if form_errors(form.description) !=null %}
+                <div class="ui negative message">
+                    <i class="close icon"></i>
+                    <p >
+                        {{ form_errors(form.description) }}
+                    </p>
+
+                </div>
+            {% endif %}
+            <div class="field">
+                {{ form_widget(form.Save) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
