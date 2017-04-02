@@ -1,0 +1,31 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="ui  main container">
+        <div class="ui container">
+            <a href="{{ path("blog_add_tag") }}" class="ui button primary">New Tag</a>
+            {% for message in app.session.flashBag().get("status") %}
+                <div class="ui visible message">
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        </div>
+            <table class="ui single line table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tag in tags %}
+                    <tr>
+                        <td>{{ tag.name }}</td>
+                        <td>{{ tag.description}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
+
+{% endblock %}

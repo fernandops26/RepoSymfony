@@ -30,6 +30,10 @@ blog_homepage:
     methods: GET
     defaults: {_controller: BlogBundle:Default:home}
 blog_add_tag:
-    path:     /addTag
+    path: /addTag
     defaults: { _controller: BlogBundle:Tag:add }
     methods: [GET,POST]
+blog_index_tag:
+    path: /tags
+    defaults: {_controller: BlogBundle:Tag:index}
+    methods: GET

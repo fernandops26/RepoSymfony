@@ -40,11 +40,20 @@ class TagController extends Controller
                 }
 
                 $this->session->getFlashBag()->add("status",$status);
+                return $this->redirectToRoute("blog_index_tag");
             }
         }
 
         return $this->render('BlogBundle:Tag:add.html.twig', [
             "form"=>$form->createView()
+        ]);
+    }
+
+    public function indexAction(){
+        $em=$this->getDoctrine()->getManager();
+        $tags=$em->getRepository(Tag::class)->findAll();
+        return $this->render("BlogBundle:Tag:index.html.twig",[
+            "tags"=>$tags
         ]);
     }
 
