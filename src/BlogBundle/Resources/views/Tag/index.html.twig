@@ -15,6 +15,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,13 @@
                     <tr>
                         <td>{{ tag.name }}</td>
                         <td>{{ tag.description}}</td>
+                        <td>
+                            {% if tag.entryTags.count() >0 %}
+                                Tag it's used
+                            {% else %}
+                                <a href="{{ path("blog_delete_tag",{"id": tag.id}) }}" class="ui button negative">Delete</a>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

@@ -57,4 +57,15 @@ class TagController extends Controller
         ]);
     }
 
+    public function deleteAction($id){
+        $em=$this->getDoctrine()->getManager();
+        $tag=$em->getRepository(Tag::class)->find($id);
+
+        $em->remove($tag);
+
+        $em->flush();
+
+        return $this->redirectToRoute("blog_index_tag");
+    }
+
 }

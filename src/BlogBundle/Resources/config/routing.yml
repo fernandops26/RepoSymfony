@@ -37,3 +37,9 @@ blog_index_tag:
     path: /tags
     defaults: {_controller: BlogBundle:Tag:index}
     methods: GET
+blog_delete_tag:
+    path: /tags/delete/{id}
+    defaults: {_controller: BlogBundle:Tag:delete}
+add:
+    path:     /addCategory
+    defaults: { _controller: BlogBundle:Category:add }
