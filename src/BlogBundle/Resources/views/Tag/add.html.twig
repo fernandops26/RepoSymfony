@@ -1,0 +1,32 @@
+{% extends "BlogBundle::layout.html.twig" %}
+
+
+
+{% block content %}
+<div class="ui grid centered container ">
+    <div class="ui row grid stackable">
+        <div class="six wide column">
+            {% for message in app.session.flashBag().get("status") %}
+                <div class="ui visible message">
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="six wide column">
+        {{ form_start(form,{"method":"POST","attr":{"class":"ui form"}}) }}
+        <div class="field">
+            <label for="">Name</label>
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="field">
+            <label for="">Description</label>
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="field">
+            {{ form_widget(form.Save) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

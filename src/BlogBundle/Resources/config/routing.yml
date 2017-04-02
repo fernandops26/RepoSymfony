@@ -29,3 +29,7 @@ blog_homepage:
     path: /home
     methods: GET
     defaults: {_controller: BlogBundle:Default:home}
+blog_add_tag:
+    path:     /addTag
+    defaults: { _controller: BlogBundle:Tag:add }
+    methods: [GET,POST]

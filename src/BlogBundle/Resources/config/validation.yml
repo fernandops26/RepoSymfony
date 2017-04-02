@@ -1,0 +1,7 @@
+BlogBundle\Entity\Tag:
+    properties:
+        name:
+            - NotBlank: {message: "El nobre no puede estar vacío"}
+            - Length:
+                min: 2
+                minMesage: "El nombre tiene que tener mas de dos caracteres"
