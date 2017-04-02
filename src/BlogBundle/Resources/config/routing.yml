@@ -11,7 +11,7 @@ blog_authors_new:
 blog_author_login:
     path: /login
     defaults: {_controller: BlogBundle:Author:login}
-    methods: GET
+    methods: [GET,POST]
 
 blog_author_login_check:
     path: /login_check

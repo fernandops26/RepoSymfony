@@ -5,6 +5,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 
 use Symfony\Component\Form\AbstractType;
@@ -22,7 +23,7 @@ class AuthorType extends AbstractType
             ->add('name',TextType::class,["required"=>"required","attr"=>["class"=>"ui input"]])
             ->add('surname',TextType::class,["required"=>"required","attr"=>["class"=>"ui input"]])
             ->add('email',TextType::class,["required"=>"required","attr"=>["class"=>"ui input"]])
-            ->add('password',TextType::class,["required"=>"required","attr"=>["class"=>"ui input"]])
+            ->add('password',PasswordType::class,["required"=>"required","attr"=>["class"=>"ui input"]])
             ->add('Save',SubmitType::class,["attr"=>["class"=>"ui button"]]);
     }
     

@@ -19,10 +19,45 @@
                     <input type="password" id="password" name="_password" class="ui input">
                 </div>
                 <div class="field">
-                    <input type="submit"  class="ui button " value="Submit">
+                    <input type="submit"  class="ui button " value="login!">
                 </div>
                 <input type="hidden" name="_target_path" value="/login" />
             </form>
+        </div>
+        <div class="six wide column ">
+            {% if app.session.flashbag().get("status") %}
+                <div class="ui negative message">
+                    <i class="close icon"></i>
+                    <div class="header">
+                        Error
+                    </div>
+                    {% for message in app.session.flashbag().get("status") %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {{ form_start(form,{"method":"POST",'attr': {'class': 'ui form'}}) }}
+                <h1 class="ui header centered">Signup</h1>
+                <div class="field">
+                    <label for="">Name</label>
+                    {{ form_widget(form.name) }}
+                </div>
+                <div class="field">
+                    <label for="">Surname</label>
+                    {{ form_widget(form.surname) }}
+                </div>
+                <div class="field">
+                    <label for="">Email</label>
+                    {{ form_widget(form.email) }}
+                </div>
+                <div class="field">
+                    <label for="">Password</label>
+                    {{ form_widget(form.password) }}
+                </div>
+                <div class="field">
+                    {{ form_widget(form.Save) }}
+                </div>
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}
