@@ -25,19 +25,22 @@ class TagController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted()){
-            $tag->setName($form->get("name")->getData());
-            $tag->setDescription($form->get("description")->getData());
+            if($form->isValid()){
 
-            $em->persist($tag);
-            $flush=$em->flush();
+                $tag->setName($form->get("name")->getData());
+                $tag->setDescription($form->get("description")->getData());
 
-            if($flush==null){
-                $status="El tag se ha creado correctamente";
-            }else{
-                $status="Error al crear el tag";
+                $em->persist($tag);
+                $flush=$em->flush();
+
+                if($flush==null){
+                    $status="El tag se ha creado correctamente";
+                }else{
+                    $status="Error al crear el tag";
+                }
+
+                $this->session->getFlashBag()->add("status",$status);
             }
-
-            $this->session->getFlashBag()->add("status",$status);
         }
 
         return $this->render('BlogBundle:Tag:add.html.twig', [
