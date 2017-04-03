@@ -23,7 +23,8 @@ class EntryController extends Controller
         $entry=new Entry();
         $form=$this->createForm(EntryType::class,$entry);
         $em=$this->getDoctrine()->getManager();
-        $rcategory=$em->getRepository(Category::class);
+        $repo_category=$em->getRepository(Category::class);
+        $repo_entry=$em->getRepository(Entry::class);
 
         $form->handleRequest($request);
 
@@ -31,6 +32,7 @@ class EntryController extends Controller
             if($form->isValid()){
                 $entry->setTitle($form->get("title")->getData());
                 $entry->setContent($form->get("content")->getData());
+                $entry->setStatus($form->get("status")->getData());
                 $entry->setAuthor($this->getUser());
                 //UPLOAD IMAGE
                 $file=$form["image"]->getData();
@@ -40,11 +42,22 @@ class EntryController extends Controller
                 //END UPLOAD
 
                 $entry->setImage($filename);
-                $category=$rcategory->find($form->get("category")->getData());
+                $category=$repo_category->find($form->get("category")->getData());
                 $entry->setCategory($category);
+
 
                 $em->persist($entry);
                 $flush=$em->flush();
+
+                //SAVE TAGS
+                $repo_entry->saveEntryTags(
+                    $form->get("tags")->getData(),
+                    $form->get("title")->getData(),
+                    $form->get("category")->getData(),
+                    $this->getUser(),
+                    $entry
+                );
+                //END SAVE
 
                 if($flush==null){
                     $status="La entrada se ha creado correctamente";
@@ -53,7 +66,7 @@ class EntryController extends Controller
                 }
 
                 $this->session->getFlashBag()->add("status",$status);
-                //return $this->redirectToRoute("blog_index_entry");
+                return $this->redirectToRoute("blog_homepage");
             }
         }
 

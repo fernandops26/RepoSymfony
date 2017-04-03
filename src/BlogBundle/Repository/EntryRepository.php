@@ -1,6 +1,10 @@
 <?php
 
 namespace BlogBundle\Repository;
+use BlogBundle\Entity\Entry;
+use BlogBundle\Entity\EntryTag;
+use BlogBundle\Entity\Tag;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * EntryRepository
@@ -10,4 +14,52 @@ namespace BlogBundle\Repository;
  */
 class EntryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function saveEntryTags($tags=null,$title=null,$category=null,$user=null,$entry=null){
+        $em=$this->getEntityManager();
+        $repo_tag=$em->getRepository(Tag::class);
+
+        $tags_result=$repo_tag->findAll();
+
+        $entry=$this->findOneBy([
+            "title"=>$title,
+            "category"=>$category,
+            "author"=>$user
+        ]);
+
+        $tags=explode(",",$tags);
+        
+        $tag_to_insert="";
+        foreach ( $tags as $tag){
+            $exist=false;
+            foreach ($tags_result as $tag_db) {
+                if ($tag == $tag_db->getName()) {
+                    $exist = true;
+                    $tag_to_insert=$tag_db;
+                }
+            }
+            if($exist==false){
+                $new_tag=new Tag();
+                $new_tag->setName($tag);
+                $new_tag->setDescription($tag);
+
+                $em->persist($new_tag);
+                $em->flush();
+
+
+                $tag_to_insert=$repo_tag->findOneBy(["name"=>$tag]);
+            }
+
+
+
+            $entryTag=new EntryTag();
+            $entryTag->setEntry($entry);
+            $entryTag->setTag($tag_to_insert);
+            $em->persist($entryTag);
+
+        }
+           $em->flush();
+
+
+
+    }
 }
