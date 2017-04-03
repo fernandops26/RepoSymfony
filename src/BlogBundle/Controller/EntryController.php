@@ -76,11 +76,76 @@ class EntryController extends Controller
         ]);
     }
 
-    public function EditAction()
+    public function EditAction($id, Request $request)
     {
-        return $this->render('BlogBundle:Entry:edit.html.twig', array(
-            // ...
-        ));
+        $em=$this->getDoctrine()->getManager();
+        $repo_category=$em->getRepository(Category::class);
+        $repo_entry=$em->getRepository(Entry::class);
+        $entry=$repo_entry->find($id);
+
+        $tags="";
+
+        foreach ($entry->getEntryTags() as $entryT){
+            $tags[]=$entryT->getTag()->getName();
+        }
+
+        $tags=implode(",",$tags);
+
+        $form=$this->createForm(EntryType::class,$entry);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            if($form->isValid()){
+                $entry->setTitle($form->get("title")->getData());
+                $entry->setContent($form->get("content")->getData());
+                $entry->setStatus($form->get("status")->getData());
+                $entry->setAuthor($this->getUser());
+                //UPLOAD IMAGE
+                $file=$form["image"]->getData();
+                $ext=$file->guessExtension();
+                $filename=time().'.'.$ext;
+                $file->move("uploads",$filename);
+                //END UPLOAD
+
+                $entry->setImage($filename);
+                $category=$repo_category->find($form->get("category")->getData());
+                $entry->setCategory($category);
+
+
+                $em->persist($entry);
+                $flush=$em->flush();
+
+                //DELETE ENTRY TAGS
+                $repo_entry->deleteEntryTags($entry->getEntryTags());
+                //END DELETE
+
+                //SAVE TAGS
+                $repo_entry->saveEntryTags(
+                    $form->get("tags")->getData(),
+                    $form->get("title")->getData(),
+                    $form->get("category")->getData(),
+                    $this->getUser(),
+                    $entry
+                );
+                //END SAVE
+
+                if($flush==null){
+                    $status="La entrada se ha creado correctamente";
+                }else{
+                    $status="Error al crear la entrada";
+                }
+
+                $this->session->getFlashBag()->add("status",$status);
+                return $this->redirectToRoute("blog_homepage");
+            }
+        }
+
+        return $this->render('BlogBundle:Entry:edit.html.twig', [
+            "form"=>$form->createView(),
+            "entry"=>$entry,
+            "tags"=>$tags
+        ]);
     }
 
     public function indexAction()

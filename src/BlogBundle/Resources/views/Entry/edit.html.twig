@@ -1,7 +1,70 @@
-{% extends "::base.html.twig" %}
+{% extends "BlogBundle::layout.html.twig" %}
 
-{% block title %}BlogBundle:Entry:Edit{% endblock %}
 
-{% block body %}
-<h1>Welcome to the Entry:Edit page</h1>
+
+{% block content %}
+    <div class="ui grid centered container ">
+        <div class="six wide column">
+            {{ form_start(form,{"method":"POST","enctype":"multipart/form-data","attr":{"class":"ui form"}}) }}
+            <h1 class="ui header">New Entry</h1>
+            <div class="field">
+                <label for="">Title</label>
+                {{ form_widget(form.title) }}
+            </div>
+            {% if form_errors(form.title) !=null %}
+                <div class="ui negative message">
+                    <i class="close icon"></i>
+                    <p >
+                        {{ form_errors(form.title) }}
+                    </p>
+
+                </div>
+            {% endif %}
+            <div class="field">
+                <label for="">Content</label>
+                {{ form_widget(form.content) }}
+            </div>
+            {% if form_errors(form.content) !=null %}
+                <div class="ui negative message">
+                    <i class="close icon"></i>
+                    <p >
+                        {{ form_errors(form.content) }}
+                    </p>
+
+                </div>
+            {% endif %}
+            <div class="field">
+                <label>Status</label>
+                {{ form_widget(form.status) }}
+            </div>
+            <div class="field">
+                <label for="BlogBlunde_entry[image]" class="ui icon button">
+                    <i class="file icon"></i>
+                    Open File
+                    {{ form_widget(form.image) }}
+                </label>
+            </div>
+
+            <div class="field">
+                {{ form_widget(form.category) }}
+            </div>
+            <div class="field">
+                <div class="ui right labeled left icon input">
+                    <i class="tags icon"></i>
+                    {{ form_widget(form.tags,{"value":tags}) }}
+                    <a class="ui tag label">
+                        Add Tag
+                    </a>
+                </div>
+            </div>
+            <div class="field">
+                {{ form_widget(form.Save) }}
+                <a href="{{ path("blog_homepage") }}" class="ui button">Cancel and return</a>
+            </div>
+            {{ form_end(form) }}
+        </div>
+        <div class="four wide column">
+            <img class="ui medium rounded image" src="{{ asset("uploads/"~entry.image) }}"/>
+        </div>
+    </div>
 {% endblock %}

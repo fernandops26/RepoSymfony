@@ -20,14 +20,16 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
 
         $tags_result=$repo_tag->findAll();
 
-        $entry=$this->findOneBy([
-            "title"=>$title,
-            "category"=>$category,
-            "author"=>$user
-        ]);
+        if(!$entry){
+            $entry=$this->findOneBy([
+                "title"=>$title,
+                "category"=>$category,
+                "author"=>$user
+            ]);
+        }
 
         $tags=explode(",",$tags);
-        
+
         $tag_to_insert="";
         foreach ( $tags as $tag){
             $exist=false;
@@ -58,8 +60,18 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
 
         }
            $em->flush();
-
-
-
     }
+
+    public function deleteEntryTags($entryTags){
+        $em=$this->getEntityManager();
+        foreach ($entryTags as $entryTag) {
+            $em->remove($entryTag);
+        }
+
+
+
+        $em->flush();
+    }
+
+
 }

@@ -58,7 +58,7 @@ blog_add_entry:
     defaults: { _controller: BlogBundle:Entry:add }
 
 blog_edit_entry:
-    path:     /EditAction
+    path:     /entry/edit/{id}
     defaults: { _controller: BlogBundle:Entry:Edit }
 
 blog_index_entry:
