@@ -44,7 +44,7 @@ class EntryTag
      */
     public function setEntry($entry)
     {
-        $this->entryId = $entry;
+        $this->entry = $entry;
 
         return $this;
     }
@@ -68,7 +68,7 @@ class EntryTag
      */
     public function setTag($tag)
     {
-        $this->tagId = $tag;
+        $this->tag = $tag;
 
         return $this;
     }
