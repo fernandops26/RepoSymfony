@@ -3,6 +3,7 @@
 namespace BlogBundle\Controller;
 
 use BlogBundle\Entity\Author;
+use BlogBundle\Entity\Entry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
@@ -43,6 +44,10 @@ class DefaultController extends Controller
     }
     
     public function homeAction(){
-        return $this->render('BlogBundle:Default:homepage.html.twig');
+        $em=$this->getDoctrine()->getRepository(Entry::class);
+        $entries=$em->findBy(["author"=>$this->getUser()]);
+        return $this->render('BlogBundle:Default:homepage.html.twig',[
+            "entries"=>$entries
+        ]);
     }
 }

@@ -1,5 +1,31 @@
 {% extends 'BlogBundle::layout.html.twig' %}
 
 {% block content %}
-    <h1 class="ui header">Homepage</h1>
+
+    <div class="ui container main">
+        <h1 class="ui header">Homepage</h1>
+        <div class="ui divided items">
+            {% for entry in entries %}
+                <div class="item">
+                    <div class="image">
+                        <img src="{{ asset('uploads/'~entry.image) }}">
+                    </div>
+                    <div class="content">
+                        <a class="header">{{ entry.title }}</a>
+                        <div class="meta">
+                            <span class="cinema">{{ entry.category.name }}</span>
+                        </div>
+                        <div class="description">
+                            <p>{{ entry.content }}</p>
+                        </div>
+                        <div class="extra">
+                            {% for tag in entry.entryTags %}
+                                <div class="ui label">{{ tag.tag.name }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
