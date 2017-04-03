@@ -22,9 +22,12 @@
                             {% for tag in entry.entryTags %}
                                 <div class="ui label">{{ tag.tag.name }}</div>
                             {% endfor %}
-                            <a href="{{ path("blog_delete_entry",{"id":entry.id}) }}" class="ui button warning right floated">
-                                <i class="ui delete icon"></i>Delete
-                            </a>
+
+                            {% if app.user.id is defined and entry.author.id == app.user.id %}
+                                <a href="{{ path("blog_delete_entry",{"id":entry.id}) }}" class="ui button warning right floated">
+                                    <i class="ui delete icon"></i>Delete
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

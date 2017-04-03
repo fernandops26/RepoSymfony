@@ -45,7 +45,7 @@ class DefaultController extends Controller
     
     public function homeAction(){
         $em=$this->getDoctrine()->getManager();
-        $entries=$em->getRepository(Entry::class)->findBy(["author"=>$this->getUser()]);
+        $entries=$em->getRepository(Entry::class)->findAll();
         return $this->render('BlogBundle:Default:homepage.html.twig',[
             "entries"=>$entries
         ]);
