@@ -22,6 +22,9 @@
                             {% for tag in entry.entryTags %}
                                 <div class="ui label">{{ tag.tag.name }}</div>
                             {% endfor %}
+                            <a href="{{ path("blog_delete_entry",{"id":entry.id}) }}" class="ui button warning right floated">
+                                <i class="ui delete icon"></i>Delete
+                            </a>
                         </div>
                     </div>
                 </div>

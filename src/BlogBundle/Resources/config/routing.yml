@@ -64,3 +64,6 @@ blog_edit_entry:
 blog_index_entry:
     path:     /entries
     defaults: { _controller: BlogBundle:Entry:index }
+blog_delete_entry:
+    path:     /entry/delete/{id}
+    defaults: {_controller: BlogBundle:Entry:delete}

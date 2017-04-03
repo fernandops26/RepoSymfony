@@ -4,6 +4,7 @@ namespace BlogBundle\Controller;
 
 use BlogBundle\Entity\Category;
 use BlogBundle\Entity\Entry;
+use BlogBundle\Entity\EntryTag;
 use BlogBundle\Form\EntryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -91,6 +92,24 @@ class EntryController extends Controller
             "entries"=>$entries
         ]);
 
+    }
+    
+    public function deleteAction($id){
+        $em=$this->getDoctrine()->getManager();
+
+        $entry=$em->getRepository(Entry::class)->findOneBy(["id"=>$id]);
+
+        $entrytags=$em->getRepository(EntryTag::class)->findBy(["entry"=>$entry]);
+
+        foreach ($entrytags as $et){
+            $em->remove($et);
+            $em->flush();
+        }
+
+        $em->remove($entry);
+        $em->flush();
+        
+        return $this->redirectToRoute("blog_homepage");
     }
 
 }
