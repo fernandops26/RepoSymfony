@@ -37,12 +37,16 @@ class EntryController extends Controller
                 $entry->setAuthor($this->getUser());
                 //UPLOAD IMAGE
                 $file=$form["image"]->getData();
-                $ext=$file->guessExtension();
-                $filename=time().'.'.$ext;
-                $file->move("uploads",$filename);
+                if(!empty($file) && $file!=null) {
+                    $ext=$file->guessExtension();
+                    $filename=time().'.'.$ext;
+                    $file->move("uploads",$filename);
+                    $entry->setImage($filename);
+                }else{
+                    $entry->setImage("null");
+                }
                 //END UPLOAD
 
-                $entry->setImage($filename);
                 $category=$repo_category->find($form->get("category")->getData());
                 $entry->setCategory($category);
 
@@ -83,6 +87,8 @@ class EntryController extends Controller
         $repo_entry=$em->getRepository(Entry::class);
         $entry=$repo_entry->find($id);
 
+        $old_image=$entry->getImage();
+
         $tags="";
 
         foreach ($entry->getEntryTags() as $entryT){
@@ -103,12 +109,16 @@ class EntryController extends Controller
                 $entry->setAuthor($this->getUser());
                 //UPLOAD IMAGE
                 $file=$form["image"]->getData();
-                $ext=$file->guessExtension();
-                $filename=time().'.'.$ext;
-                $file->move("uploads",$filename);
+                if(!empty($file) && $file!=null){
+                    $ext=$file->guessExtension();
+                    $filename=time().'.'.$ext;
+                    $file->move("uploads",$filename);
+                    $entry->setImage($filename);
+                }else{
+                    $entry->setImage($old_image);
+                }
                 //END UPLOAD
 
-                $entry->setImage($filename);
                 $category=$repo_category->find($form->get("category")->getData());
                 $entry->setCategory($category);
 
