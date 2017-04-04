@@ -3,7 +3,9 @@
 namespace BlogBundle\Controller;
 
 use BlogBundle\Entity\Author;
+use BlogBundle\Entity\Category;
 use BlogBundle\Entity\Entry;
+use BlogBundle\Entity\Tag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
@@ -16,8 +18,6 @@ class DefaultController extends Controller
     public function allAuthorsAction(){
         $author_repo=$this->getDoctrine()->getRepository(Author::class);
         $authors=$author_repo->findAll();
-
-
 
         foreach($authors as $author){
             echo $author->getName()."</br>";
@@ -38,16 +38,22 @@ class DefaultController extends Controller
                 }
             }
         }
-
         die();
-
     }
     
-    public function homeAction($page){
+    public function homeAction($page,$category_id){
         $em=$this->getDoctrine()->getManager();
-        $entries=$em->getRepository(Entry::class)->paginateEntry(5,$page);
+        $max_results=2;
+        $entries=$em->getRepository(Entry::class)->paginateEntry($max_results,$page,$category_id);
+
+        $categories=$em->getRepository(Category::class)->findAll();
+
         return $this->render('BlogBundle:Default:homepage.html.twig',[
-            "entries"=>$entries
+            "entries"=>$entries,
+            "current_page"=>$page,
+            "max_pages"=>round($entries->count()/$max_results),
+            "category_id"=>$category_id,
+            "categories"=>$categories
         ]);
     }
 }

@@ -4,6 +4,24 @@
 
     <div class="ui container main">
         <h1 class="ui header">Homepage</h1>
+
+        <div class="divided">
+            <h3 class="header">Categories</h3>
+            <div class="ui blue labels">
+                {% set total=0 %}
+                {% for category in categories %}
+                    <a class="ui label" href="{{ path("blog_search_by_category",{"category_id":category.id,"page":1}) }}">
+                        {{ category.name }}
+                        <div class="detail">{{ category.entries.count }}</div>
+                    </a>
+                    {%set total = total+ category.entries.count %}
+                {% endfor %}
+                <a class="ui label" href="{{ path("blog_search_by_category",{"category_id":-1,"page":1}) }}">
+                    All
+                    <div class="detail">{{  total }}</div>
+                </a>
+            </div>
+        </div>
         <div class="ui divided items">
             {% for entry in entries %}
                 <div class="item">
@@ -36,5 +54,7 @@
                 </div>
             {% endfor %}
         </div>
+        {% set vars= {'current_page':current_page, 'max_pages':max_pages, 'category_id': category_id} %}
+        {% include "@Blog/Partial/pagination.html.twig" with vars %}
     </div>
 {% endblock %}

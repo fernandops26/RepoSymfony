@@ -26,9 +26,9 @@ blog_author_registrer:
     methods:  GET
 
 blog_homepage:
-    path:     /home/{page}
+    path:     /home/{category_id}/{page}
     methods:  GET
-    defaults: {_controller: BlogBundle:Default:home, page: 1}
+    defaults: {_controller: BlogBundle:Default:home, category_id: -1, page: 1}
 blog_add_tag:
     path:     /addTag
     defaults: { _controller: BlogBundle:Tag:add }
@@ -67,3 +67,6 @@ blog_index_entry:
 blog_delete_entry:
     path:     /entry/delete/{id}
     defaults: {_controller: BlogBundle:Entry:delete}
+blog_search_by_category:
+    path: /category/{category_id}/page/{page}
+    defaults: {_controller: BlogBundle:Default:home, category_id: -1, page: 1}

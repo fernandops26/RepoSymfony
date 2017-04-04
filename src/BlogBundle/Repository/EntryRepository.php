@@ -71,19 +71,28 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
         $em->flush();
     }
 
-    public function paginateEntry($pageSize,$page){
+    public function paginateEntry($pageSize,$page,$category_id){
         $em=$this->getEntityManager();
-
         $qb=$em->createQueryBuilder();
-
-        $query=$qb
-            ->select("e")
-            ->from("BlogBundle:Entry","e")
-            ->orderBy("e.title","asc")
-            ->setFirstResult($pageSize*($page-1))
-            ->setMaxResults($pageSize)
-            ->getQuery();
-
+        if($category_id!=-1){
+            $query=$qb
+                ->select("e")
+                ->from("BlogBundle:Entry","e")
+                ->where("e.category = :category_id" )
+                ->orderBy("e.title","asc")
+                ->setFirstResult($pageSize*($page-1))
+                ->setMaxResults($pageSize)
+                ->setParameter("category_id",$category_id)
+                ->getQuery();
+        }else{
+            $query=$qb
+                ->select("e")
+                ->from("BlogBundle:Entry","e")
+                ->orderBy("e.title","asc")
+                ->setFirstResult($pageSize*($page-1))
+                ->setMaxResults($pageSize)
+                ->getQuery();
+        }
 
         $paginator =new Paginator($query);
         return $paginator;

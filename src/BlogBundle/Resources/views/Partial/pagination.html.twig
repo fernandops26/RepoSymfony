@@ -1,0 +1,22 @@
+<div class="ui pagination menu">
+    {% if max_pages==1 %}
+        <a class="active item" href="{{ path("blog_search_by_category",{"page":1,"category_id":category_id}) }}">
+            {{ current_page }}
+        </a>
+
+    {% else %}
+        {% for i in 1..max_pages %}
+
+            {% if i==current_page %}
+                <a class="active item" href="{{ path("blog_search_by_category",{"page":i,"category_id":category_id}) }}">
+                    {{ current_page }}
+                </a>
+            {% else %}
+                <a class="item" href="{{ path("blog_search_by_category",{"page":i,"category_id":category_id}) }}">
+                    {{ i }}
+                </a>
+            {% endif %}
+        {% endfor %}
+
+    {% endif %}
+</div>
