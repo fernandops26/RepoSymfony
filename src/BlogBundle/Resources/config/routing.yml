@@ -26,9 +26,9 @@ blog_author_registrer:
     methods:  GET
 
 blog_homepage:
-    path:     /home
+    path:     /home/{page}
     methods:  GET
-    defaults: {_controller: BlogBundle:Default:home}
+    defaults: {_controller: BlogBundle:Default:home, page: 1}
 blog_add_tag:
     path:     /addTag
     defaults: { _controller: BlogBundle:Tag:add }

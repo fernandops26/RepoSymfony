@@ -4,6 +4,7 @@ namespace BlogBundle\Repository;
 use BlogBundle\Entity\Entry;
 use BlogBundle\Entity\EntryTag;
 use BlogBundle\Entity\Tag;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
@@ -67,10 +68,26 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
         foreach ($entryTags as $entryTag) {
             $em->remove($entryTag);
         }
-
-
-
         $em->flush();
+    }
+
+    public function paginateEntry($pageSize,$page){
+        $em=$this->getEntityManager();
+
+        $qb=$em->createQueryBuilder();
+
+        $query=$qb
+            ->select("e")
+            ->from("BlogBundle:Entry","e")
+            ->orderBy("e.title","asc")
+            ->setFirstResult($pageSize*($page-1))
+            ->setMaxResults($pageSize)
+            ->getQuery();
+
+
+        $paginator =new Paginator($query);
+        return $paginator;
+
     }
 
 
